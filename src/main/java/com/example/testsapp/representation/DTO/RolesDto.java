@@ -1,6 +1,7 @@
 package com.example.testsapp.representation.DTO;
 
 import com.example.testsapp.data.Entity.Roles;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
  * A DTO for the {@link com.example.testsapp.data.Entity.Roles} entity
  */
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RolesDto implements Serializable {
     private final Long id;
     private final String name;

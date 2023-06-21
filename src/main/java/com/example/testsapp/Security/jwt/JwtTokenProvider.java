@@ -51,6 +51,7 @@ public class JwtTokenProvider {
     public Authentication getAuthentication(String token)
     {
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(getLogin(token));
+        //System.out.println(userDetails.getAuthorities()+ " asdasdasda");
         return new UsernamePasswordAuthenticationToken(userDetails,"", userDetails.getAuthorities());
     }
 
@@ -63,7 +64,7 @@ public class JwtTokenProvider {
     public String resolveToken(HttpServletRequest req)
     {
         String bearerToken = req.getHeader("Authorization");
-        if (bearerToken != null && bearerToken.startsWith("Bearer_")){
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")){
             return bearerToken.substring(7,bearerToken.length());
         }
         return null;

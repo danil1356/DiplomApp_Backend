@@ -56,7 +56,7 @@ public class AnswerRestController {
         }
 
         this.answerService.save(answerDTO.toEntity());
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(answerDTO);
     }
 
 
@@ -69,7 +69,7 @@ public class AnswerRestController {
         }
 
         this.answerService.delete(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(answerDTO);
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
@@ -80,6 +80,6 @@ public class AnswerRestController {
         }
 
         this.answerService.save(answerDTO.toEntity());
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(answerDTO);
     }
 }

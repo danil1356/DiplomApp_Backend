@@ -12,10 +12,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,9 +31,7 @@ public class AuthenticationRestController {
         this.usersService = usersService;
     }
 
-
-    // TODO: 09.02.2023 ЧЗХ
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @PostMapping("/login")
     public ResponseEntity login (@RequestBody AuthRequestDto authRequestDto){
         try {
             String login = authRequestDto.getLogin();
@@ -49,6 +44,7 @@ public class AuthenticationRestController {
             }
 
             String token = jwtTokenProvider.createToken(login, user.getRolesSet());
+
             Map<Object, Object> response = new HashMap<>();
             response.put("login", login);
             response.put("token", token);

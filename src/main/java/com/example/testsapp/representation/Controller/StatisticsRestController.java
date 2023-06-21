@@ -55,8 +55,8 @@ public class StatisticsRestController {
             return ResponseEntity.badRequest().build();
         }
 
-        this.statisticsService.save(statisticsDto.toEntity());
-        return ResponseEntity.ok().build();
+        Statistics statistics = this.statisticsService.save(statisticsDto.toEntity());
+        return ResponseEntity.ok(StatisticsDto.toDto(statistics));
     }
 
 
